@@ -242,34 +242,6 @@ def upgrade() -> None:
     )
 
     # Old Version
-    # op.create_table(
-    #     "object_images",
-    #     sa.Column(
-    #         "object_id",
-    #         sa.Integer,
-    #         primary_key=True,
-    #         comment=column_comment_dict["object_id"]
-    #     ),
-    #     sa.Column(
-    #         "primary_image",
-    #         sa.Text,
-    #         comment=column_comment_dict["primary_image"]
-    #     ),
-    #     sa.Column(
-    #         "additional_images",
-    #         ARRAY(sa.Text),
-    #         comment=column_comment_dict["additional_images"]
-    #     ),
-    #     sa.Column(
-    #         "created_at",
-    #         sa.DateTime,
-    #         nullable=False,
-    #         server_default=sa.text("CURRENT_TIMESTAMP"),
-    #         comment=column_comment_dict["created_at"]
-    #     ),
-    # )
-    
-    # New Version 
     op.create_table(
         "object_images",
         sa.Column(
@@ -279,14 +251,14 @@ def upgrade() -> None:
             comment=column_comment_dict["object_id"]
         ),
         sa.Column(
-            "image",
+            "primary_image",
             sa.Text,
             comment=column_comment_dict["primary_image"]
         ),
         sa.Column(
-            "is_primary_image",
-            sa.Boolean,
-            comment="Identifies if it's the primary image for the object."
+            "additional_images",
+            ARRAY(sa.Text),
+            comment=column_comment_dict["additional_images"]
         ),
         sa.Column(
             "created_at",
@@ -296,6 +268,34 @@ def upgrade() -> None:
             comment=column_comment_dict["created_at"]
         ),
     )
+    
+    # New Version 
+    # op.create_table(
+    #     "object_images",
+    #     sa.Column(
+    #         "object_id",
+    #         sa.Integer,
+    #         primary_key=True,
+    #         comment=column_comment_dict["object_id"]
+    #     ),
+    #     sa.Column(
+    #         "image",
+    #         sa.Text,
+    #         comment=column_comment_dict["primary_image"]
+    #     ),
+    #     sa.Column(
+    #         "is_primary_image",
+    #         sa.Boolean,
+    #         comment="Identifies if it's the primary image for the object."
+    #     ),
+    #     sa.Column(
+    #         "created_at",
+    #         sa.DateTime,
+    #         nullable=False,
+    #         server_default=sa.text("CURRENT_TIMESTAMP"),
+    #         comment=column_comment_dict["created_at"]
+    #     ),
+    # )
 
     op.create_table(
         "object_copyright",
@@ -346,6 +346,34 @@ def upgrade() -> None:
         ),
     )
 
+    # Table: object_images_normalized
+    op.create_table(
+        "object_images_normalized",
+        sa.Column(
+            "object_id",
+            sa.Integer,
+            primary_key=True,
+            comment=column_comment_dict["object_id"]
+        ),
+        sa.Column(
+            "image",
+            sa.Text,
+            comment="URL to the image of an object (JPEG)"
+        ),
+        sa.Column(
+            "is_primary_image",
+            sa.Boolean,
+            comment="Identifies if its the primary image for the object."
+        ),
+        sa.Column(
+            "created_at",
+            sa.DateTime,
+            nullable=False,
+            server_default=sa.text("CURRENT_TIMESTAMP"),
+            comment=column_comment_dict["created_at"]
+        ),
+    )
+
 
 def downgrade() -> None:
     """Downgrade schema."""
@@ -355,5 +383,6 @@ def downgrade() -> None:
     op.drop_table("object_gallery_info")
     op.drop_table("object_tags")
     op.drop_table("object_images")
+    op.drop_table("object_images_normalized")
     op.drop_table("object_copyright")
     op.drop_table("object_api_metadata")
