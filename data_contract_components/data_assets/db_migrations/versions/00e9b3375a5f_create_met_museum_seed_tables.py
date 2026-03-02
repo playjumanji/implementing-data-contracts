@@ -269,7 +269,7 @@ def upgrade() -> None:
     #     ),
     # )
     
-    # New Version
+    # New Version 
     op.create_table(
         "object_images",
         sa.Column(
