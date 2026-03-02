@@ -1,40 +1,8 @@
-<div style="clear: both;"></div>
 
-<div style="display: flex; align-items: center;">
 
-<img src=".readme_assets/data_contract_book_cover.png" style="padding: 0px 20px 10px 10px;">
-
-<div style="flex: 1;">
-
-Welcome to the code repository for the hands-on coding exercise within ***Chapter 7: Implementing Data Contracts***, from the the O'reilly book ***Data Contracts: Developing Production Grade Pipelines at Scale***.
+Welcome to the code repository for the hands-on coding exercise within *** Implementing Data Contracts***
 
 In this repo we will introduce you how to implement the data contract architecture end-to-end using fully open-source tools, as well as walk you through the workflow of handling data contract violations. This is a compliment to the book, but you can also go through this end-to-end with repo alone.
-
-Also a huge shout out to O'Reilly for allowing us to make this repository and Chapter 7 of the book public!
-
-Finally, if you found this project helpful, please consider giving this repo a star as the support helps immensely.
-
-</div>
-</div>
-
-<div style="clear: both;"></div>
-
-> [!NOTE]  
-> **You can access the full book via the following sources:**
-> 
-> - [Directly from O'Reilly Media's Platform (Paid)](https://learning.oreilly.com/library/view/data-contracts/9781098157623/)
->
-> - [Purchase a physical copy on Amazon](https://www.amazon.com/Data-Contracts-Developing-Production-Pipelines/dp/109815763X)
->
-> - [Download a free PDF of the entire book from sponsor (limited time)](https://www.gable.ai/data-contracts-book)  
-> 
-> In addition, please check out the book's accompanying website for additional resources: http://data-contract-book.com
-
----
-
-# 📚 Table of Contents
-
-TBD
 
 # 📋 Prerequisites
 
