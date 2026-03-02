@@ -241,6 +241,35 @@ def upgrade() -> None:
         ),
     )
 
+    # Old Version
+    # op.create_table(
+    #     "object_images",
+    #     sa.Column(
+    #         "object_id",
+    #         sa.Integer,
+    #         primary_key=True,
+    #         comment=column_comment_dict["object_id"]
+    #     ),
+    #     sa.Column(
+    #         "primary_image",
+    #         sa.Text,
+    #         comment=column_comment_dict["primary_image"]
+    #     ),
+    #     sa.Column(
+    #         "additional_images",
+    #         ARRAY(sa.Text),
+    #         comment=column_comment_dict["additional_images"]
+    #     ),
+    #     sa.Column(
+    #         "created_at",
+    #         sa.DateTime,
+    #         nullable=False,
+    #         server_default=sa.text("CURRENT_TIMESTAMP"),
+    #         comment=column_comment_dict["created_at"]
+    #     ),
+    # )
+    
+    # New Version
     op.create_table(
         "object_images",
         sa.Column(
@@ -250,14 +279,14 @@ def upgrade() -> None:
             comment=column_comment_dict["object_id"]
         ),
         sa.Column(
-            "primary_image",
+            "image",
             sa.Text,
             comment=column_comment_dict["primary_image"]
         ),
         sa.Column(
-            "additional_images",
-            ARRAY(sa.Text),
-            comment=column_comment_dict["additional_images"]
+            "is_primary_image",
+            sa.Boolean,
+            comment="Identifies if it's the primary image for the object."
         ),
         sa.Column(
             "created_at",
